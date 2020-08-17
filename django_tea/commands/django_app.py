@@ -4,7 +4,7 @@ from typing import List, Optional
 import typer
 from django.core.management import execute_from_command_line
 
-app = typer.Typer(name="project", help="Project level helper commands.")
+app = typer.Typer(name="django", help="Django helper commands.")
 
 
 @app.command()
