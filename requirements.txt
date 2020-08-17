@@ -1,0 +1,3 @@
+django==3.1
+django-tea==0.0.1
+typer==0.3.2
