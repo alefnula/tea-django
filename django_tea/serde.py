@@ -1,5 +1,7 @@
 import json
 import uuid
+import enum
+import dataclasses
 from typing import Type
 
 from django.db import models
@@ -11,10 +13,10 @@ class DjangoTeaEncoder(json.JSONEncoder):
 
     It knows how to serialize:
 
-        1. All objects that have a custom `to_dict` method
-        2. Decimal numbers
-        3. DateTime and Date objects
-        4. UUIDs
+        1. All objects that have a custom `to_dict` method.
+        2. Decimal numbers.
+        3. DateTime, date and timezone objects.
+        4. UUIDs.
     """
 
     to_float = frozenset(("decimal.Decimal",))
@@ -47,6 +49,12 @@ class DjangoTeaEncoder(json.JSONEncoder):
                 return list(o)
             elif path in self.to_str:
                 return str(o)
+            elif isinstance(o, enum.Enum):
+                return o.value
+            elif dataclasses.is_dataclass(o):
+                return dataclasses.asdict(o)
+            elif path.startswith("pytz.tzfile."):
+                return o.zone
             raise TypeError("%s is not JSON serializable" % o)
 
 

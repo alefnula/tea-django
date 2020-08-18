@@ -22,14 +22,14 @@ class Column:
 
 def _get_path(obj, path) -> str:
     if callable(path):
-        return path(obj)
-
-    path = path.split(".")
-    for item in path:
-        obj = getattr(obj, item)
-    if isinstance(obj, bool):
-        return ":white_check_mark:" if obj else ":cross_mark:"
-    return str(obj)
+        obj = path(obj)
+    else:
+        path = path.split(".")
+        for item in path:
+            obj = getattr(obj, item)
+        if isinstance(obj, bool):
+            obj = ":white_check_mark:" if obj else ":cross_mark:"
+    return f"{obj}"
 
 
 class RichTableMixin:
