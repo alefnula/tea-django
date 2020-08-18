@@ -66,8 +66,12 @@ def json_dict_to_model(model: Type[models.Model], d: dict) -> models.Model:
     model_d = {}
     for field in model._meta.fields:
         if isinstance(field, models.DateTimeField):
+            field.auto_now = False
+            field.auto_now_add = False
             model_d[field.name] = ts.dt_from_utc_str(d[field.name])
         elif isinstance(field, models.DateField):
+            field.auto_now = False
+            field.auto_now_add = False
             model_d[field.name] = ts.dt_from_utc_str(d[field.name]).date()
         elif isinstance(field, models.ForeignKey):
             key = f"{field.name}_id"
