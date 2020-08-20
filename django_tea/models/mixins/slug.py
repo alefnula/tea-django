@@ -96,12 +96,10 @@ class UniqueSlugMixin(SlugMixinBase):
     slug = models.SlugField(unique=True)
 
     def save(self, *args, **kwargs):
-        if self.slug is None or self.slug.strip() == "":
-            self.slug = create_unique_slug(
-                value=self._slug_value(),
-                model=self.__class__,
-                object_pk=self.pk,
-            )
+        # FIXME: Do this only when the slug field changes.
+        self.slug = create_unique_slug(
+            value=self._slug_value(), model=self.__class__, object_pk=self.pk,
+        )
         super().save(*args, **kwargs)
 
     class Meta:

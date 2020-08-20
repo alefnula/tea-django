@@ -2,10 +2,21 @@ from typing import Optional
 
 from django.db import models
 from django.forms.widgets import TextInput
+from django.core.validators import RegexValidator
 from django.utils.html import mark_safe, SafeString
+from django.utils.translation import gettext_lazy as _
+
+from django_tea.consts import COLOR_RE
+
+
+color_validator = RegexValidator(
+    COLOR_RE, _("Enter a valid color."), "invalid color"
+)
 
 
 class ColorField(models.CharField):
+    default_validators = [color_validator]
+
     def __init__(self, *args, **kwargs):
         # It should always be 7
         kwargs["max_length"] = 7

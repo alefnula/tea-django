@@ -14,7 +14,7 @@ from django_tea.table import RichTableMixin
 
 def output(
     fmt: ConsoleFormat,
-    model: Type[RichTableMixin],
+    model: Optional[Type[RichTableMixin]],
     objs: Union[List[RichTableMixin], RichTableMixin],
 ):
     console = Console()
@@ -23,6 +23,10 @@ def output(
         console.print(serde.json_dumps(objs))
 
     elif fmt == ConsoleFormat.text:
+        if model is None:
+            console.print(objs)
+            return
+
         if objs is None or (isinstance(objs, list) and len(objs) == 0):
             console.print(f"[cyan]No {model.__name__}s found.[/cyan]")
             return
@@ -66,12 +70,12 @@ def command(
         @functools.wraps(func)
         def wrapper(*args, **kwargs):
             try:
+                config = Config.get_application_config()
                 result = func(*args, **kwargs)
                 if model is not None:
-                    config = Config.get_application_config()
                     output(fmt=config.format, model=model, objs=result)
                 else:
-                    return result
+                    return output(fmt=config.format, model=None, objs=result)
             except errors.DjangoTeaError as e:
                 config = Config.get_application_config()
                 if config.format == config.Format.text:
