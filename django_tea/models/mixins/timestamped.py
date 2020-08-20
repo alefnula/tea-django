@@ -10,9 +10,11 @@ class TimestampedMixin(models.Model):
     """
 
     created_on = models.DateTimeField(
-        auto_now_add=True, blank=False, null=False
+        auto_now_add=True, blank=False, null=False, editable=False
     )
-    updated_on = models.DateTimeField(auto_now=True, blank=False, null=False)
+    updated_on = models.DateTimeField(
+        auto_now=True, blank=False, null=False, editable=False
+    )
 
     class Meta:
         app_label = "django_tea"

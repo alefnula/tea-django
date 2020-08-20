@@ -6,9 +6,13 @@ from django_tea import timestamp as ts
 
 class TimerMixin(models.Model):
     start_time = models.DateTimeField(
-        auto_now_add=True, null=False, blank=False
+        auto_now_add=True, null=False, blank=False, editable=True
     )
-    end_time = models.DateTimeField(null=True, blank=True, default=None)
+    # HACK!!!
+    start_time.editable = True
+    end_time = models.DateTimeField(
+        null=True, blank=True, default=None, editable=True
+    )
     duration = models.BigIntegerField(null=False, blank=False, default=0)
 
     @property
@@ -24,7 +28,13 @@ class TimerMixin(models.Model):
 
     def stop(self):
         self.end_time = timezone.now()
-        self.duration = int((self.end_time - self.start_time).total_seconds())
+
+    def save(self, *args, **kwargs):
+        if self.end_time is not None:
+            self.duration = int(
+                (self.end_time - self.start_time).total_seconds()
+            )
+        super().save(*args, **kwargs)
 
     class Meta:
         app_label = "django_tea"
