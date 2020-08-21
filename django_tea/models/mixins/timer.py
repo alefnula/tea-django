@@ -6,10 +6,8 @@ from django_tea import timestamp as ts
 
 class TimerMixin(models.Model):
     start_time = models.DateTimeField(
-        auto_now_add=True, null=False, blank=False, editable=True
+        default=ts.now, null=False, blank=True, editable=True
     )
-    # HACK!!!
-    start_time.editable = True
     end_time = models.DateTimeField(
         null=True, blank=True, default=None, editable=True
     )
