@@ -1,5 +1,6 @@
 import io
 import os
+from random import SystemRandom
 from dataclasses import dataclass
 from configparser import ConfigParser
 from typing import List, Dict, Type, Optional, Callable, Any
@@ -7,6 +8,7 @@ from typing import List, Dict, Type, Optional, Callable, Any
 import pytz
 import tzlocal
 
+from django_tea import consts
 from django_tea import errors
 from django_tea.enums import ConsoleFormat
 from django_tea.singleton import Singleton
@@ -36,6 +38,8 @@ class Config(Singleton):
     Format = ConsoleFormat
 
     ENTRIES: Dict[str, ConfigField] = {
+        "debug": ConfigField(section="general", option="debug", type=bool),
+        "secret_key": ConfigField(section="general", option="secret_key"),
         "format": ConfigField(
             section="general",
             option="format",
@@ -48,12 +52,19 @@ class Config(Singleton):
             to_value=pytz.timezone,
             to_string=lambda v: v.zone,
         ),
+        "log_dir": ConfigField(section="general", option="log_dir",),
     }
 
     def __init__(self, config_file):
         self._config_file = config_file
+        self.debug = True
+        self.secret_key = "".join(
+            SystemRandom().choice(consts.SECRETE_KEY_ALLOWED_CHARS)
+            for _ in range(50)
+        )
         self.format: ConsoleFormat = ConsoleFormat.text
         self.timezone = tzlocal.get_localzone()
+        self.log_dir = os.path.join(os.path.dirname(config_file), "logs")
 
     @property
     def entries(self) -> List[ConfigEntry]:
