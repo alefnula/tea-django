@@ -1,7 +1,6 @@
 from django.db import models
 from django.utils import timezone
-
-from django_tea import timestamp as ts
+from tea import timestamp as ts
 
 
 class TimerMixin(models.Model):

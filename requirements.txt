@@ -1,6 +1,4 @@
+console-tea==0.0.1
 django==3.1
 python-slugify==4.0.1
-pytz==2020.1
-rich==5.2.0
-typer==0.3.2
-tzlocal==2.1
+tea==0.1.0

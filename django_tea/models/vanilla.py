@@ -1,6 +1,5 @@
+from console_tea.table import RichTableMixin
 from django.utils.functional import classproperty
-
-from django_tea.table import RichTableMixin
 
 
 class VanillaModel(RichTableMixin):

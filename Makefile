@@ -32,4 +32,4 @@ build:               ## Build the source and wheel distribution packages.
 
 release: build       ## Build and upload the package to PyPI.
 	@twine upload --skip-existing  dist/*
-	@rm -fr build dist django_tea.egg-info
+	@rm -fr build dist "$(PROJECT).egg-info"
