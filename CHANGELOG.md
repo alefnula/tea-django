@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## v0.0.5 (August XX, 2020)
+
+- Fix secret key saving into config file.
+
+
+---
+
 
 ## v0.0.4 (August 23, 2020)
 
