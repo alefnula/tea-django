@@ -1,6 +1,14 @@
 # CHANGELOG
 
 
+## v0.0.4 (August XX, 2020)
+
+- Fixes.
+
+
+---
+
+
 ## v0.0.3 (August 23, 2020)
 - Move stuff to `console_tea` and `tea` projects. 
 
