@@ -1,7 +1,7 @@
 # CHANGELOG
 
 
-## v0.0.4 (August XX, 2020)
+## v0.0.4 (August 23, 2020)
 
 - Fixes.
 
