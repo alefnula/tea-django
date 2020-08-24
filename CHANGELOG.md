@@ -1,8 +1,10 @@
 # CHANGELOG
 
-## v0.0.5 (August XX, 2020)
+
+## v0.0.5 (August 24, 2020)
 
 - Fix secret key saving into config file.
+- Rename project to `tea-django`.
 
 
 ---

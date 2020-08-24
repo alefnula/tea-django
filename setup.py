@@ -9,7 +9,7 @@ author_email = "alefnula@gmail.com"
 
 def get_version():
     """Import the version module and get the project version from it."""
-    version_py = Path(__file__).parent / "django_tea" / "version.py"
+    version_py = Path(__file__).parent / "tea_django" / "version.py"
     spec = importlib.util.spec_from_file_location("version", version_py)
     version = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(version)
@@ -17,7 +17,7 @@ def get_version():
 
 
 setup(
-    name="django-tea",
+    name="tea-django",
     version=get_version(),
     author=author,
     author_email=author_email,
@@ -26,7 +26,7 @@ setup(
     description="Set of django helpers for developing web and non-web apps.",
     long_description=io.open("README.md", "r", encoding="utf-8").read(),
     long_description_content_type="text/markdown",
-    url="https://github.com/alefnula/django-tea",
+    url="https://github.com/alefnula/tea-django",
     platforms=["Windows", "POSIX", "MacOSX"],
     classifiers=[
         "Programming Language :: Python :: 3",

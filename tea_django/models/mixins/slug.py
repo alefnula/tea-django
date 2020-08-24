@@ -82,7 +82,7 @@ class SlugMixinBase(models.Model):
         return cls.get_by_slug(slug=slugify(value), **kwargs)
 
     class Meta:
-        app_label = "django_tea"
+        app_label = "tea_django"
         abstract = True
 
 
@@ -103,7 +103,7 @@ class UniqueSlugMixin(SlugMixinBase):
         super().save(*args, **kwargs)
 
     class Meta:
-        app_label = "django_tea"
+        app_label = "tea_django"
         abstract = True
 
 
@@ -121,5 +121,5 @@ class NonUniqueSlugMixin(SlugMixinBase):
         super().save(*args, **kwargs)
 
     class Meta:
-        app_label = "django_tea"
+        app_label = "tea_django"
         abstract = True

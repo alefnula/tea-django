@@ -6,7 +6,7 @@ from django.core.validators import RegexValidator
 from django.utils.html import mark_safe, SafeString
 from django.utils.translation import gettext_lazy as _
 
-from django_tea.consts import COLOR_RE
+from tea_django.consts import COLOR_RE
 
 
 color_validator = RegexValidator(
@@ -40,5 +40,5 @@ class ColoredMixin(models.Model):
         return mark_safe(f'<span style="color: {self.color}">{s}</span>')
 
     class Meta:
-        app_label = "django_tea"
+        app_label = "tea_django"
         abstract = True

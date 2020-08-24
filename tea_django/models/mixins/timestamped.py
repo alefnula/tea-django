@@ -17,5 +17,5 @@ class TimestampedMixin(models.Model):
     )
 
     class Meta:
-        app_label = "django_tea"
+        app_label = "tea_django"
         abstract = True

@@ -34,5 +34,5 @@ class TimerMixin(models.Model):
         super().save(*args, **kwargs)
 
     class Meta:
-        app_label = "django_tea"
+        app_label = "tea_django"
         abstract = True

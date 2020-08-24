@@ -54,5 +54,5 @@ class UUIDBaseModel(models.Model, RichTableMixin):
     __repr__ = __str__
 
     class Meta:
-        app_label = "django_tea"
+        app_label = "tea_django"
         abstract = True

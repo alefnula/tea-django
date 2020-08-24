@@ -4,7 +4,7 @@ from random import SystemRandom
 
 from tea_console.config import ConfigField, Config as ConsoleConfig
 
-from django_tea import consts
+from tea_django import consts
 
 
 def to_value(v: str) -> str:
