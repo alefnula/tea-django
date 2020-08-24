@@ -1,6 +1,15 @@
 # CHANGELOG
 
 
+## v0.0.6 (August 24, 2020)
+
+- Add colored serializers.
+- Add rest framework exception handler.
+
+
+---
+
+
 ## v0.0.5 (August 24, 2020)
 
 - Fix secret key saving into config file.
