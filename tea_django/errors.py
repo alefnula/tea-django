@@ -8,7 +8,7 @@ __all__ = [
 ]
 
 from typing import Type, Optional
-from console_tea.errors import ConsoleTeaError, InvalidConfiguration
+from tea_console.errors import ConsoleTeaError, InvalidConfiguration
 
 
 class DjangoTeaError(ConsoleTeaError):

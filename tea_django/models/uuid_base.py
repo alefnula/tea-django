@@ -4,7 +4,7 @@ from typing import Dict, Any
 from django.db import models
 from django.utils.functional import classproperty
 from tea import timestamp as ts
-from console_tea.table import RichTableMixin
+from tea_console.table import RichTableMixin
 
 
 class UUIDBaseModel(models.Model, RichTableMixin):
@@ -54,5 +54,5 @@ class UUIDBaseModel(models.Model, RichTableMixin):
     __repr__ = __str__
 
     class Meta:
-        app_label = "django_tea"
+        app_label = "tea_django"
         abstract = True

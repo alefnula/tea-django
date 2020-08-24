@@ -1,4 +1,4 @@
-# Django Tea
+# Tea Django
 
 Is a set of helper modules for developing command line, web and gui
 applications using the django framework.
@@ -11,16 +11,16 @@ project to project.
 
 
 ```bash
-pip install django-tea
+pip install tea-django
 ```
 
-Add `django-tea` to `INSTALLED_APPS`:
+Add `tea_django` to `INSTALLED_APPS`:
 
 ```python
 
 INSTALLED_APPS = [
     ...,
-    "django_tea",
+    "tea_django",
     ...,
 ]
 ```

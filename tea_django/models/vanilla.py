@@ -1,4 +1,4 @@
-from console_tea.table import RichTableMixin
+from tea_console.table import RichTableMixin
 from django.utils.functional import classproperty
 
 

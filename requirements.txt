@@ -1,4 +1,4 @@
-console-tea==0.0.2
 django==3.1
 python-slugify==4.0.1
 tea==0.1.1
+tea-console==0.0.3
