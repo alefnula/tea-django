@@ -17,7 +17,7 @@
 
 
 ## v0.0.3 (August 23, 2020)
-- Move stuff to `console_tea` and `tea` projects. 
+- Move stuff to `tea-console` and `tea` projects. 
 
 
 ---

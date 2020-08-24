@@ -2,7 +2,7 @@ import base64
 from typing import Dict
 from random import SystemRandom
 
-from console_tea.config import ConfigField, Config as ConsoleConfig
+from tea_console.config import ConfigField, Config as ConsoleConfig
 
 from django_tea import consts
 
