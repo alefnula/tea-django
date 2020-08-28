@@ -1,11 +1,20 @@
 # CHANGELOG
 
+## v0.0.8 (August 28, 2020)
+
+- Added creation of main entry point for django application.
+
+
+---
+
 
 ## v0.0.7 (August 24, 2020)
 
 - Fixing requirements.
 
+
 ---
+
 
 ## v0.0.6 (August 24, 2020)
 

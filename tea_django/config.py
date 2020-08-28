@@ -19,6 +19,7 @@ class Config(ConsoleConfig):
 
     ENTRIES: Dict[str, ConfigField] = {
         **ConsoleConfig.ENTRIES,
+        "user": ConfigField(section="django", option="user"),
         "secret_key": ConfigField(
             section="django",
             option="secret_key",
@@ -28,8 +29,19 @@ class Config(ConsoleConfig):
     }
 
     def __init__(self, config_file):
+        self.user = None
         self.secret_key = "".join(
             SystemRandom().choice(consts.SECRETE_KEY_ALLOWED_CHARS)
             for _ in range(50)
         )
+        self.__selected_user = None
         super().__init__(config_file=config_file)
+
+    @property
+    def selected_user(self):
+        return (
+            self.user if self.__selected_user is None else self.__selected_user
+        )
+
+    def set_user(self, username):
+        self.__selected_user = username
