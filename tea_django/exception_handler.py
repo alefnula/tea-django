@@ -50,6 +50,9 @@ def tea_django_exception_handler(exc, context):
     ):
         data = {"error": str(exc)}
         status = http_statuses.HTTP_404_NOT_FOUND
+    elif isinstance(exc, ValueError):
+        data = {"error": str(exc)}
+        status = http_statuses.HTTP_400_BAD_REQUEST
     elif isinstance(exc, ValidationError):
         data = {"error": format_rest_framework_validation_errors(exc.detail)}
         status = http_statuses.HTTP_400_BAD_REQUEST
