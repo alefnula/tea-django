@@ -13,10 +13,17 @@ class TimerMixin(models.Model):
     duration = models.BigIntegerField(null=False, blank=False, default=0)
 
     @property
-    def running_time(self) -> str:
-        end_time = self.end_time or timezone.now()
+    def running_duration(self) -> int:
+        """Return the running duration in seconds.
 
-        return ts.humanize(int((end_time - self.start_time).total_seconds()))
+        This will return result even if the song hasn't finsihed.
+        """
+        end_time = self.end_time or timezone.now()
+        return int((end_time - self.start_time).total_seconds())
+
+    @property
+    def running_time(self) -> str:
+        return ts.humanize(self.running_duration)
 
     def start(self):
         self.start_time = timezone.now()
@@ -28,9 +35,7 @@ class TimerMixin(models.Model):
 
     def save(self, *args, **kwargs):
         if self.end_time is not None:
-            self.duration = int(
-                (self.end_time - self.start_time).total_seconds()
-            )
+            self.duration = self.running_duration
         super().save(*args, **kwargs)
 
     class Meta:
