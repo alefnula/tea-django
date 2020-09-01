@@ -1,5 +1,4 @@
 from django.db import models
-from django.utils import timezone
 from tea import timestamp as ts
 
 
@@ -18,7 +17,7 @@ class TimerMixin(models.Model):
 
         This will return result even if the song hasn't finsihed.
         """
-        end_time = self.end_time or timezone.now()
+        end_time = self.end_time or ts.now()
         return int((end_time - self.start_time).total_seconds())
 
     @property
@@ -26,12 +25,12 @@ class TimerMixin(models.Model):
         return ts.humanize(self.running_duration)
 
     def start(self):
-        self.start_time = timezone.now()
+        self.start_time = ts.now()
         self.end_time = None
         self.duration = 0
 
     def stop(self):
-        self.end_time = timezone.now()
+        self.end_time = ts.now()
 
     def save(self, *args, **kwargs):
         if self.end_time is not None:
