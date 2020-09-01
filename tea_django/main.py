@@ -4,7 +4,6 @@ import sys
 from pathlib import Path
 from typing import Optional
 
-import typer
 from tea.utils import get_object
 
 
@@ -39,8 +38,8 @@ class Main:
             app_path: Dotted path to the Typer main app. If it's not provided
                 `{app_name}.commands.app` will be used.
             app_dir: Optional path to the directory containing the application
-                library. Used for adding that directory to PYTHONPATH if it's not
-                already added.
+                library. Used for adding that directory to PYTHONPATH if it's
+                not already added.
         """
 
         self.app_name = app_name

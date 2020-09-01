@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## v0.0.9 (September 01, 2020)
+
+- Added views for JWT token generation and refresh.
+- Switch to simplejwt.
+
+
+---
+
+
 ## v0.0.8 (August 28, 2020)
 
 - Added creation of main entry point for django application.

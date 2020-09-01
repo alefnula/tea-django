@@ -1,6 +1,6 @@
 django~=3.1
 djangorestframework~=3.11.1
-djangorestframework-jwt~=1.11.0
+djangorestframework-simplejwt~=4.4.0
 python-slugify~=4.0.1
 tea~=0.1.2
 tea-console~=0.0.4
