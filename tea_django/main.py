@@ -4,7 +4,6 @@ import sys
 from pathlib import Path
 from typing import Optional
 
-import typer
 from tea.utils import get_object
 
 
@@ -39,12 +38,13 @@ class Main:
             app_path: Dotted path to the Typer main app. If it's not provided
                 `{app_name}.commands.app` will be used.
             app_dir: Optional path to the directory containing the application
-                library. Used for adding that directory to PYTHONPATH if it's not
-                already added.
+                library. Used for adding that directory to PYTHONPATH if it's
+                not already added.
         """
 
         self.app_name = app_name
-        self.app_path = app_path or f"{app_name}.commands.app"
+        self.app_module = app_name.replace("-", "_")
+        self.app_path = app_path or f"{self.app_module}.commands.app"
         self.app_dir = app_dir
 
     def __call__(self):
@@ -64,7 +64,7 @@ class Main:
 
         # Setup django setting module
         os.environ.setdefault(
-            "DJANGO_SETTINGS_MODULE", f"{self.app_name}.settings"
+            "DJANGO_SETTINGS_MODULE", f"{self.app_module}.settings",
         )
 
         # Setup django
@@ -82,13 +82,16 @@ class Main:
             args = args[1:]
 
         # Rename the app from main file to app_name
-        if args[0].endswith(f"{self.app_name}{os.path.sep}__main__.py"):
+        if args[0].endswith(f"{self.app_module}{os.path.sep}__main__.py"):
             args[0] = self.app_name
 
         # Check if it's a django manage command and run it
         if (
             len(args) >= 2
-            and args[0].endswith(self.app_name)
+            and (
+                args[0].endswith(self.app_name)
+                or args[0].endswith(self.app_module)
+            )
             and args[1] == "manage"
         ):
             from django.core.management import execute_from_command_line
