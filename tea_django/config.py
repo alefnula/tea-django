@@ -2,7 +2,7 @@ import base64
 from typing import Dict
 from random import SystemRandom
 
-from tea_console.config import ConfigField, Config as ConsoleConfig
+from tea_console.config import ConfigField, TeaConsoleConfig
 
 from tea_django import consts
 
@@ -15,10 +15,10 @@ def to_string(v: str) -> str:
     return base64.b64encode(v.encode("utf-8")).decode("utf-8")
 
 
-class Config(ConsoleConfig):
+class Config(TeaConsoleConfig):
 
     ENTRIES: Dict[str, ConfigField] = {
-        **ConsoleConfig.ENTRIES,
+        **TeaConsoleConfig.ENTRIES,
         "user": ConfigField(section="django", option="user"),
         "secret_key": ConfigField(
             section="django",
