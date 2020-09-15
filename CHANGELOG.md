@@ -1,6 +1,14 @@
 # CHANGELOG
 
 
+## v0.0.12 (September 15, 2020)
+
+- Added `db dump` and `db load` export import commands for PostgreSQL.
+
+
+---
+
+
 ## v0.0.11 (September 02, 2020)
 
 - `tea-console` update.
