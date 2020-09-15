@@ -2,8 +2,8 @@ import os
 import shutil
 import socket
 from pathlib import Path
-from typing import Optional
 from datetime import datetime
+from typing import Optional, Union, List
 
 from django.conf import settings
 from tea.process import execute
@@ -53,16 +53,21 @@ class PostgreSQL:
         self.db_params = ["-h", self.host, "-p", self.port, "-U", self.user]
         self.env = {"PGPASSWORD": self.password}
 
-    def run(self, command, arguments):
+    def run(self, command: str, arguments: Optional[Union[str, List[str]]]):
         exe = shutil.which(command)
         if exe is None:
             raise DatabaseError(message=f"`{command}` command is not found.")
-        if not isinstance(arguments, list):
-            arguments = [arguments]
-        exit_code, stdout, stderr = execute(exe, *arguments, env=self.env)
+
+        if arguments is None:
+            command = [exe]
+        elif isinstance(arguments, str):
+            command = [exe, arguments]
+        else:
+            command = [exe, *arguments]
+        exit_code, stdout, stderr = execute(command, env=self.env)
         if exit_code != 0:
             raise PostgreSQLError(
-                command=f"{command} {' '.join(arguments)}",
+                command=f"{command}",
                 exit_code=exit_code,
                 stdout=stdout,
                 stderr=stderr,
