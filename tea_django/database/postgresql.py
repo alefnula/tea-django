@@ -134,4 +134,4 @@ class PostgreSQL:
             filename = filename_without_ext
 
         self.delete_and_create()
-        self.psql(filename=filename)
+        self.psql(filename=filename, database=self.database)
