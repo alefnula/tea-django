@@ -110,7 +110,7 @@ class PostgreSQL:
 
         filename = (
             output_directory
-            / f"{self.database}-{hostname}-{now:%Y-%m-%d}{tag}.backup"
+            / f"{self.database}-{hostname}-{now:%Y%m%d%H%M%S}{tag}.backup"
         )
 
         # Create output directory if it doesn't exist.
