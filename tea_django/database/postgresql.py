@@ -60,10 +60,10 @@ class PostgreSQL:
 
         if arguments is None:
             command = [exe]
-        elif isinstance(arguments, str):
-            command = [exe, arguments]
+        elif not isinstance(arguments, (list, tuple)):
+            command = [exe, str(arguments)]
         else:
-            command = [exe, *arguments]
+            command = [exe, *[str(arg) for arg in arguments]]
         exit_code, stdout, stderr = execute(command, env=self.env)
         if exit_code != 0:
             raise PostgreSQLError(
