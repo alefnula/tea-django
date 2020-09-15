@@ -1,6 +1,15 @@
 # CHANGELOG
 
 
+## v0.0.13 (September 15, 2020)
+
+
+- Use full timestamps for database dumps.
+
+
+---
+
+
 ## v0.0.12 (September 15, 2020)
 
 - Added `db dump` and `db load` export import commands for PostgreSQL.
