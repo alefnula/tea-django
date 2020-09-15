@@ -85,16 +85,12 @@ class PostgreSQL:
         params = [*self.db_params, "-d", self.database, "-f", filename]
         self.run("pg_dump", params)
 
-    def psql(self, command=None, filename=None):
+    def psql(self, command=None, filename=None, database="postgres"):
         """Run psql command."""
         if command is not None:
-            self.run(
-                "psql", [*self.db_params, "-d", self.database, "-c", command]
-            )
+            self.run("psql", [*self.db_params, "-d", database, "-c", command])
         elif filename is not None:
-            self.run(
-                "psql", [*self.db_params, "-d", self.database, "-f", filename]
-            )
+            self.run("psql", [*self.db_params, "-d", database, "-f", filename])
 
     def delete_and_create(self):
         """Delete and create a fresh database."""
@@ -109,10 +105,13 @@ class PostgreSQL:
     ):
         """Dump database."""
         now = datetime.now()
-        prefix = socket.gethostname()
+        hostname = socket.gethostname()
         tag = f"-{tag}" if tag else ""
 
-        filename = output_directory / f"{prefix}-{now:%Y-%m-%d}{tag}.backup"
+        filename = (
+            output_directory
+            / f"{self.database}-{hostname}-{now:%Y-%m-%d}{tag}.backup"
+        )
 
         # Create output directory if it doesn't exist.
         os.makedirs(output_directory, exist_ok=True)
