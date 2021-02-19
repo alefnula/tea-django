@@ -64,7 +64,8 @@ class Main:
 
         # Setup django setting module
         os.environ.setdefault(
-            "DJANGO_SETTINGS_MODULE", f"{self.app_module}.settings",
+            "DJANGO_SETTINGS_MODULE",
+            f"{self.app_module}.settings",
         )
 
         # Setup django

@@ -46,7 +46,8 @@ def tea_django_exception_handler(exc, context):
         data = {"error": str(exc)}
         status = http_statuses.HTTP_401_UNAUTHORIZED
     elif isinstance(
-        exc, (ObjectDoesNotExist, Http404, errors.ObjectNotFound),
+        exc,
+        (ObjectDoesNotExist, Http404, errors.ObjectNotFound),
     ):
         data = {"error": str(exc)}
         status = http_statuses.HTTP_404_NOT_FOUND
