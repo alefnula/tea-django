@@ -98,7 +98,9 @@ class UniqueSlugMixin(SlugMixinBase):
     def save(self, *args, **kwargs):
         # FIXME: Do this only when the slug field changes.
         self.slug = create_unique_slug(
-            value=self._slug_value(), model=self.__class__, object_pk=self.pk,
+            value=self._slug_value(),
+            model=self.__class__,
+            object_pk=self.pk,
         )
         super().save(*args, **kwargs)
 
